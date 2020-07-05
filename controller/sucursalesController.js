@@ -9,7 +9,7 @@ const sucursales = {
         res.write('Estas son Nuestras Sucursales \n\n')
         res.write('.............................................................\n\n')
         dbConcesionarias.forEach((concesionaria)=>{
-            res.write ('Sucursal: ' + concesionaria.sucursal+'\n' + concesionaria.direccion + '\n'+' telefono' +concesionaria.telefono + '\n\n')
+            res.write ('Sucursal: ' + concesionaria.sucursal +'\n' + 'Dirección: '+ concesionaria.direccion + '\n'+ 'Telefono' + concesionaria.telefono + '\n\n')
             res.write('.............................................................\n\n')          
         })
          res.end()
@@ -29,6 +29,7 @@ const sucursales = {
             concesionaria.autos.forEach((auto)=>{
                 res.write(auto.marca+' '+auto.modelo+'\n'+'año:' +auto.anio + '\ncolor: ' + auto.color+'\n\n')
             })
+            res.end()
             }
          
         });

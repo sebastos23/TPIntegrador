@@ -5,13 +5,12 @@ const marcas = {
     index: (req, res) =>{
         res.set({'Content-Type':'text/plain; charset=utf-8'})
         res.write('¡Estas son nuestras marcas!!! \n\n')
-      
-        dbConcesionarias.forEach((concesionaria) => {
+              dbConcesionarias.forEach((concesionaria) => {
                    concesionaria.autos.forEach((auto)=>{
                        res.write(auto.marca +'\n')
-                   })
-                   res.end('\n Elija la que te interese y vea sus modelos!!');
+                   })  
         })
+        res.end('\n Elija la que te interese y vea sus modelos!!');
     },
     marcas: (req, res) => {
         let idMarca = req.params.id
