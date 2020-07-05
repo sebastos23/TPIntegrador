@@ -4,24 +4,34 @@ const dbConcesionarias = JSON.parse(fs.readFileSync('./data/concesionarias.json'
 const autos = {
     index: (req, res) =>{
         res.set({'Content-Type':'text/plain; charset=utf-8'})
-        res.write('\n...........................\n')
+        res.write('\n...........................................\n\n')
         res.write('Estas son nuestros autos!! \n\n')
+        res.write('...........................................\n\n')
         dbConcesionarias.forEach((concesionaria)=>{
-            consesionaria.forEach((auto)=>{
-                res.write(auto.marca)
-            })
-            //res.write(concesionaria.autos+'\n\n')            
+            concesionaria.autos.forEach((auto)=>{
+                res.write('* ' + auto.marca + ' '+ auto.modelo + ' '+ auto.anio + ' '+ auto.color + '\n\n')   
+            })      
         })
-         res.end()    
+        res.write('...........................................\n\n')
+         res.write('Elija el que le agrade y no dude en consultarnos!!\n\n') 
+         res.end('...........................................\n\n')   
+    },
+    marca: (req, res) => {
+        let idMarca = req.params.id
+        res.set({'Content-Type':'text/plain; charset=utf-8'})
+        res.write('...........................................\n\n')
+                res.write('Estos son los modelos de la marca que elegiste\n')
+                res.write('...........................................\n\n')
+       /* dbConcesionarias.forEach((concesionaria)=>{
+            concesionaria.autos.forEach((auto)=>{
+                if (auto.marca == idMarca){
+                    
+                res.write('Marca: '+ auto.marca +' \n'+ 'Modelo: ' +auto.modelo+'\n'+ 'Año: ' + auto.anio+ '\n\n')
+                }
+            })
+            res.end('Son todos nuestros modelos')
+        })*/
     }
-
 }
 
 module.exports = autos;
-/*    enviarAutos: function(req,res){
-        res.set({"content-type":"text/plain; charset=utf-8"})
-        res.write("Bienvenido, aqui podra encontrar las lista de nuestro vehiculos\n\n")  
-        controllersAutos.listarAutos().forEach(auto => {
-                res.write("\nMarca:" + auto.marca)
-                res.write("\nColor:" + auto.color)
-                res.write("\nAño:" + auto.anio + "\n\n")*/

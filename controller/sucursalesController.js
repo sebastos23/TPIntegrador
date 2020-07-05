@@ -17,23 +17,23 @@ const sucursales = {
     sucursales: (req, res) => {
         let idSucursal = req.params.id;
         res.set({'content-type':'text/plain;charset=utf-8'});
-        dbConcesionarias.forEach((concesionaria)=>{  
-            if (concesionaria.sucursal == idSucursal){                
+        dbConcesionarias.forEach(concesionaria=>{  
+            if (concesionaria.sucursal == idSucursal){  
+                 let cantidad = concesionaria.autos.length          
                 res.write('...........................................\n\n')
                 res.write(concesionaria.sucursal + '\n\n')
                 res.write('...........................................\n\n')
                 res.write('\n'+ 'Direccion: ' + concesionaria.direccion + '\n'+ 'telefono: ' + concesionaria.telefono+'\n\n')
                 res.write('...........................................\n\n')
-                res.write('Nuestros autos son:\n\n'); 
+                res.write('Tenemos '+ cantidad + ' modelos para ofrecerle ellos son:\n\n'); 
                 res.write('...........................................\n\n')
-            concesionaria.autos.forEach((auto)=>{
-                res.write(auto.marca+' '+auto.modelo+'\n'+'año:' +auto.anio + '\ncolor: ' + auto.color+'\n\n')
-            })
-            res.end()
+            concesionaria.autos.forEach(auto=>{
+                res.write(auto.marca+' '+auto.modelo+'\n'+'año:' +auto.anio + '\ncolor: ' + auto.color+'\n\n')  
+            }) 
+            res.end('No dude en consultarnos por su proximo auto!!!')
             }
-         
         });
-       res.end('No disponemos de esa sucursal....')
+       res.send('Disculpe, no disponemos de esa sucursal....')
     }
 }
 
